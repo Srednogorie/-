@@ -1,0 +1,77 @@
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Currency Calculator</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'bootstrap-3.3.7-dist/css/jumbotron-narrow.css' %}" rel="stylesheet">
+    <!-- My Custom CSS -->
+    <link href="{% static 'bootstrap-3.3.7-dist/css/custom.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+</head>
+
+<body>
+<div class="container">
+
+      <div class="header clearfix">
+        <h3 class="text-muted">Валутен Калкулатор</h3>
+      </div>
+
+<form action="." method="post">
+    <div>
+        <span>{{ form.валута_от|as_crispy_field }}</span>
+    </div>
+    <div>
+        <span>{{ form.валута_в|as_crispy_field }}</span>
+    </div>
+    <div>
+        <span>{{ form.сума|as_crispy_field }}</span>
+    </div>
+    <div>
+        {% csrf_token %}
+        <span><input class="btn btn-primary" type="submit" value="Изчистли"></span>
+    </div>
+</form>
+
+<div style="margin:15px">Сума след превалутиране: {{ result|floatformat:2 }}</div>
+
+<table>
+  <tr>
+    <th>Наименование</th>
+    <th>Код</th>
+    <th>За единица</th>
+    <th>Лева</th>
+  </tr>
+    {% for currency in currencies %}
+  <tr>
+    <td>{{ currency.Наименование }}</td>
+    <td>{{ currency.Код }}</td>
+    <td>{{ currency.За_единица }}</td>
+    <td>{{ currency.Лева }}</td>
+  </tr>
+    {% endfor %}
+</table>
+    <footer class="footer">
+        <p>&copy; 2017 Sando, Inc.</p>
+    </footer>
+
+
+</div>
+</body>
+</html>

@@ -31,7 +31,7 @@ df = pd.DataFrame(data)
 df.columns = ['Наименование', 'Код', 'За_единица', 'Лева', 'Обратен_курс']
 df = df.set_index('Наименование', inplace=False)
 
-engine = create_engine('postgresql://postgres:postgres@46.101.0.188/currency')
+engine = create_engine('postgresql://***:***@46.101.0.188/currency')
 df.to_sql('calculator_currency', engine, if_exists='replace')
 
 # print(df)

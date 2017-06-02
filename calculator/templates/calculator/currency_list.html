@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{{ form.валута_от.errors }}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,17 +34,20 @@
 
         <form id="mycalc" action="." method="post">
             <div>
-                <span>{{ form.валута_от|as_crispy_field }}</span>
+                <span><label>Валута от</label></span>
+                <span>{{ form.currency_from|as_crispy_field }}</span>
             </div>
             <div>
-                <span>{{ form.валута_в|as_crispy_field }}</span>
+                <span><label>Валута в</label></span>
+                <span>{{ form.currency_to|as_crispy_field }}</span>
             </div>
             <div>
-                <span>{{ form.сума|as_crispy_field }}</span>
+                <span><label>Сума</label></span>
+                <span>{{ form.amount|as_crispy_field }}</span>
             </div>
             <div>
                 {% csrf_token %}
-                <span><input class="btn btn-primary" type="submit" value="Изчистли"></span>
+                <span><input class="btn btn-primary" type="submit" value="Изчисли"></span>
             </div>
         </form>
 

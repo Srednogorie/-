@@ -23,16 +23,16 @@ $.ajaxSetup({
 // AJAX for posting
 function calculate() {
     console.log("calculate is working!") // sanity check
-    var валута_от = $("#id_валута_от").val();
-    var валута_в = $("#id_валута_в").val();
-    var сума = $("#id_сума").val();
+    var currency_from = $("#id_currency_from").val();
+    var currency_to = $("#id_currency_to").val();
+    var amount = $("#id_amount").val();
     $.ajax({
         url: $("#mycalc").attr('action'), // the endpoint
         type : "POST", // http method
         data: {
-            валута_от: валута_от,
-            валута_в: валута_в,
-            сума: сума
+            currency_from: currency_from,
+            currency_to: currency_to,
+            amount: amount
         },
 
         // data sent with the post request

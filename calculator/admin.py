@@ -1,11 +1,9 @@
-import os
-import subprocess
-from currency_calculator.settings import BASE_DIR
 from django.conf.urls import url
 from django.http import HttpResponseRedirect
 from django.contrib import admin
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import Currency
+from . import bnb_currency_parser_two
 
 # Register your models here.
 
@@ -24,9 +22,7 @@ class CurrencyAdmin(admin.ModelAdmin):
 
 @staff_member_required
 def synchronize(request):
-    path = (os.path.join(BASE_DIR, 'calculator/bnb_currency_parser.py')) # Avoid hard-coded paths
-    command = ["python " + path]
-    subprocess.call(command, shell=True)
+    bnb_currency_parser_two.parser()
 
     return HttpResponseRedirect('/admin/calculator/currency/') # Go back to the start
 
